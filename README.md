@@ -1,2 +1,1 @@
-# photo-booth
-Photo Booth Web App
+# Photo Booth
