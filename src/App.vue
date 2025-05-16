@@ -1,15 +1,57 @@
 <script setup>
+  import { ref } from "vue";
   import HomeView from "./views/HomeView.vue";
   import WebcamView from "./views/WebcamView.vue";
   import ReviewView from "./views/ReviewView.vue";
-  import ExitView from "./views/ExitView.vue";
+  import ThankYouView from "./views/ThankYouView.vue";
+
+  const currentScreen = ref('home');
+  const name = ref('');
+  const photo = ref('');
+
+  const startWebcam = userName => {
+    name.value = userName;
+    currentScreen.value = 'webcam';
+  }
+
+  const takePhoto = photoData => {
+    photo.value = photoData;
+    currentScreen.value = 'review';
+  };
+
+  const submitPhoto = () => {
+    currentScreen.value = 'thank you';
+  };
+
+  const retakePhoto = () => {
+    photo.value = '';
+    currentScreen.value = 'webcam';
+  }
+
+  const goHome = () => {
+    name.value = '';
+    photo.value = '';
+    currentScreen.value = 'home'
+  }
 </script>
 
 <template>
-  <HomeView v-if="currentScreen === 'home'" />
-  <WebcamView v-else-if="currentScreen === 'webcam'" />
-  <ReviewView v-else-if="currentScreen === 'review'" />
-  <ExitView v-else-if="currentScreen === 'exit'" />
+  <HomeView 
+    v-if="currentScreen === 'home'" 
+    @start="startWebcam" 
+  />
+  <WebcamView 
+    v-else-if="currentScreen === 'webcam'" 
+    @review="takePhoto"
+  />
+  <ReviewView 
+    v-else-if="currentScreen === 'review'" 
+    :photo="photo"
+    :name="name"
+  />
+  <ThankYouView 
+    v-else-if="currentScreen === 'thank you'" 
+  />
 </template>
 
 <style>
@@ -22,5 +64,12 @@
     background-position: center;
     height: 100vh;
     margin: 0;
+  }
+  h2{
+    font-weight: 200;
+  }
+
+  p{
+    font-weight: 100;
   }
 </style>
