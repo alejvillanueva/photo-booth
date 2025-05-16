@@ -14,7 +14,7 @@
     currentScreen.value = 'webcam';
   }
 
-  const takePhoto = photoData => {
+  const reviewPhoto = photoData => {
     photo.value = photoData;
     currentScreen.value = 'review';
   };
@@ -42,15 +42,20 @@
   />
   <WebcamView 
     v-else-if="currentScreen === 'webcam'" 
-    @review="takePhoto"
+    @review="reviewPhoto"
   />
   <ReviewView 
     v-else-if="currentScreen === 'review'" 
     :photo="photo"
-    :name="name"
+    @retake="retakePhoto"
+    @submit="submitPhoto"
+    @exit="goHome"
   />
   <ThankYouView 
     v-else-if="currentScreen === 'thank you'" 
+    :name="name"
+    :photo="photo"
+    @reset="goHome"
   />
 </template>
 
