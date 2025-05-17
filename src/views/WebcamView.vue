@@ -1,10 +1,13 @@
 <script setup>
   import { onMounted, ref } from 'vue';
 
+  import HypeText from '../components/HypeText.vue';
+import AppHeader from '../components/AppHeader.vue';
+
   const video = ref(null);
   const canvas = ref(null);
 
-  const emit = defineEmits(['review']);
+  const emit = defineEmits(['review', 'exit']);
 
   const startCamera = () => {
     const mediaProps = {
@@ -34,29 +37,58 @@
     emit('review', data)
   }
 
+  const goHome = () => {
+    emit('exit');
+  }
+
 </script>
 <template>
-  <div class="webcam">
-    <video 
-      ref="video" 
-      autoplay 
+  <div class="webcam-container">   
+    <AppHeader
+      :show-exit-button="true"
+      @exit="goHome"
     />
-    <canvas 
-      ref="canvas" 
-      hidden 
-    />
-    <button @click="takePhoto">
-      Take
-    </button>
+    <HypeText>
+      <template #main>
+        your face with the frame and take your photo whenever you're ready!
+      </template>
+      <template #sub>
+        Say cheese!
+      </template>
+    </HypeText>
+    <div class="webcam">
+      <video 
+        ref="video" 
+        autoplay 
+      />
+      <canvas 
+        ref="canvas" 
+        hidden 
+      />
+      <button @click="takePhoto">
+        Take
+      </button>
+    </div>
   </div>
 </template>
 <style scoped>
+  .webcam-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+  }
   .webcam{
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   video{
-    max-width: 50vmax;
+    width: 50vmin;
+    border-radius: 25px;
+    margin: 25px;
   }
 </style>

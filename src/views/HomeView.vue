@@ -1,5 +1,6 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
+  import HypeText from '../components/HypeText.vue';
   import { ref, watch} from 'vue';
 
   const userName = ref('');
@@ -29,15 +30,23 @@
       :src="logo"
       alt="Gramercy Tech"
     >
-    <h1>Welcome to the Photo Experience!</h1>
-    <h2> Smile, snap, and share with our difital photo booth experience.</h2>
+    <HypeText>
+      <template #main>
+        Welcome to the Photo Experience!
+      </template>
+      <template #sub>
+        Smile, snap, and share with our digital photo booth experience.
+      </template>
+    </HypeText>
     <p>Enter your name to begin.</p> 
     <div class="home-screen-input-container">
-      <div class="home-screen-input-controls">
+      <div 
+        class="home-screen-input-controls"
+        :class="{invalid: !validInput}"
+      >
         <input 
           v-model="userName"
           class="home-screen-input"
-          :class="{invalid: !validInput}"
           @keydown.enter="submitName"
         >
         <button @click="submitName"> 
@@ -54,8 +63,17 @@
   </div>
 </template>
 <style scoped>
+  input{
+    font-family: 'Lexend';
+    border: none;
+  }
+  input:focus{
+    outline: none;
+  }
   .home-screen{
+    position: absolute;
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,22 +88,24 @@
     display: flex;
     flex-direction: column;
   }
-  .home-screen-input{
+  .home-screen-input-controls{
       font-family: 'Lexend';
+      background-color: white;
       border: 1px solid white; /* Global */
-      border-radius: 10px;
-      padding: 5px; /* Global */
+      border-radius: 20px;
+      padding: 10px; /* Global */
       margin-right: 5px;
+      box-shadow: 0 0 10px 3px lightblue;
+      box-sizing: border-box;
   }
-  .home-screen-input:hover{
-       border-color: darkblue;
+  .home-screen-input-controls:hover{
+       border-color: gray;
   }
-  .home-screen-input:focus{
-    outline: 2px solid lightblue;
-    border-color: white;
+  .home-screen-input-controls.invalid{
+    box-shadow: 0 0 20px 3px red;
   }
-  .home-screen-input.invalid{
-    box-shadow: 0 0 10px 3px red;
+   .home-screen-input-controls.invalid:hover{
+       border-color: lightcoral;
   }
   .home-screen-input-warning{
     visibility: hidden;

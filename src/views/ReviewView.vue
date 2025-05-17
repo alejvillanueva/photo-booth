@@ -1,8 +1,11 @@
 <script setup>
+  import logo from '../assets/gramercy_logo.png';
+import AppHeader from '../components/AppHeader.vue';
+  import HypeText from '../components/HypeText.vue';
+
   const emit = defineEmits(['retake', 'submit', 'exit'])
   const props = defineProps(['photo']);
 
-  // Can I make this dynamic
   const submitPhoto = () => {
     emit('submit');
   };
@@ -16,24 +19,52 @@
   }
 </script>
 <template>
-  <div class="review">
-    <img :src="photo">
-    <button @click="retakePhoto">
-      Retake
-    </button>
-    <button @click="submitPhoto">
-      Submit
-    </button>
-    <button @click="exit">
-      Exit
-    </button>
+  <div class="review-container">
+    <AppHeader />
+    <HypeText>
+      <template #main>
+        You look fantastic!
+      </template>
+      <template #sub> 
+        What do you think? 
+      </template>
+    </HypeText>
+    <div class="review-photo">
+      <img
+        class="photo"
+        :src="photo"
+      >
+      <div class="review-photo-controls">
+        <button @click="retakePhoto">
+          Retake
+        </button>
+        <button @click="submitPhoto">
+          Submit
+        </button>
+        <button @click="exit">
+          Exit
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 <style scoped>
-  .review{
+  .review-container{
     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  img{
-    max-width: 50vmax;
+
+  .photo{
+    width: 50vmin;
+    border-radius: 25px;
+    margin: 25px;  
+  }
+
+  .review-photo-controls{
+    width: 100%;
+    display: flex;  
+    justify-content: space-around;
+
   }
 </style>

@@ -36,23 +36,31 @@
 </script>
 
 <template>
-  <HomeView 
-    v-if="currentScreen === 'home'" 
-    @start="startWebcam" 
-  />
-  <WebcamView 
-    v-else-if="currentScreen === 'webcam'" 
-    @review="reviewPhoto"
-  />
+  <Transition name="home">
+    <HomeView 
+      v-if="currentScreen === 'home'" 
+      @start="startWebcam" 
+    />
+  </Transition>
+  <Transition 
+    name="webcam" 
+    appear
+  >
+    <WebcamView 
+      v-if="currentScreen === 'webcam'" 
+      @review="reviewPhoto"
+      @exit="goHome"
+    />
+  </Transition>
   <ReviewView 
-    v-else-if="currentScreen === 'review'" 
+    v-if="currentScreen === 'review'" 
     :photo="photo"
     @retake="retakePhoto"
     @submit="submitPhoto"
     @exit="goHome"
   />
   <ThankYouView 
-    v-else-if="currentScreen === 'thank you'" 
+    v-if="currentScreen === 'thank you'" 
     :name="name"
     :photo="photo"
     @reset="goHome"
@@ -77,4 +85,26 @@
   p{
     font-weight: 100;
   }
+
+  .home-enter-active,
+  .home-leave-active
+   {
+    transition: opacity 1s ease;
+  }
+
+  .home-enter-from,
+  .home-leave-to {
+    opacity: 0;
+  }
+
+  .webcam-enter-active {
+    transition: opacity 3s ease;
+  }
+  .webcam-enter-from {
+    opacity: 0;
+  }
+
 </style>
+
+
+<!-- ADD TRANSITION -->
