@@ -4,6 +4,8 @@
 1. Download or Gitclone
 2. In root repo, "npm i"
 3. Then npm build
+4. npm preview
+5. go to http://localhost:4173/
 
 
 ## Stretch Goals 
