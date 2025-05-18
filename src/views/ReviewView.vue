@@ -1,5 +1,6 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
+import ActionButton from '../components/ActionButton.vue';
 import AppHeader from '../components/AppHeader.vue';
   import HypeText from '../components/HypeText.vue';
 
@@ -35,15 +36,24 @@ import AppHeader from '../components/AppHeader.vue';
         :src="photo"
       >
       <div class="review-photo-controls">
-        <button @click="retakePhoto">
+        <ActionButton
+          theme="primary"
+          @click="retakePhoto"
+        >
           Retake
-        </button>
-        <button @click="submitPhoto">
+        </ActionButton>
+        <ActionButton
+          theme="primary"
+          @click="submitPhoto"
+        >
           Submit
-        </button>
-        <button @click="exit">
+        </ActionButton>
+        <ActionButton
+          theme="primary"
+          @click="exit"
+        >
           Exit
-        </button>
+        </ActionButton>
       </div>
     </div>
   </div>

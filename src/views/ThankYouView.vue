@@ -1,5 +1,6 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
+import ActionButton from '../components/ActionButton.vue';
 import AppHeader from '../components/AppHeader.vue';
   import HypeText from '../components/HypeText.vue';
   const props = defineProps(['name', 'photo']);
@@ -22,9 +23,12 @@ import AppHeader from '../components/AppHeader.vue';
         class="photo"
         :src="photo"
       >
-      <button @click="startOver">
+      <ActionButton
+        theme="secondary"
+        @click="startOver"
+      >
         Start Over?
-      </button>
+      </ActionButton>
     </div>
   </div>
 </template>

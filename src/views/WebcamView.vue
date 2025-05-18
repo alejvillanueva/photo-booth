@@ -2,8 +2,8 @@
   import { onMounted, ref } from 'vue';
 
   import HypeText from '../components/HypeText.vue';
-import AppHeader from '../components/AppHeader.vue';
-
+  import AppHeader from '../components/AppHeader.vue';
+  import ActionButton from '../components/ActionButton.vue';
   const video = ref(null);
   const canvas = ref(null);
 
@@ -50,7 +50,7 @@ import AppHeader from '../components/AppHeader.vue';
     />
     <HypeText>
       <template #main>
-        your face with the frame and take your photo whenever you're ready!
+        Position your face within the frame and take your photo whenever you're ready!
       </template>
       <template #sub>
         Say cheese!
@@ -65,9 +65,12 @@ import AppHeader from '../components/AppHeader.vue';
         ref="canvas" 
         hidden 
       />
-      <button @click="takePhoto">
-        Take
-      </button>
+      <ActionButton
+        theme="secondary"
+        @click="takePhoto"
+      >
+        Take Photo
+      </ActionButton>
     </div>
   </div>
 </template>

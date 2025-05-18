@@ -1,5 +1,6 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
+import ActionButton from '../components/ActionButton.vue';
   import HypeText from '../components/HypeText.vue';
   import { ref, watch} from 'vue';
 
@@ -49,9 +50,12 @@
           class="home-screen-input"
           @keydown.enter="submitName"
         >
-        <button @click="submitName"> 
-          Start
-        </button>
+        <ActionButton
+          theme="primary"
+          @click="submitName"
+        >
+          start
+        </ActionButton>
       </div>
       <small 
         :class="{invalid: !validInput}"
@@ -65,7 +69,11 @@
 <style scoped>
   input{
     font-family: 'Lexend';
+    background-color: transparent;
     border: none;
+    padding: 0 13px 0 15px;
+    box-sizing: border-box;
+    text-align: center;
   }
   input:focus{
     outline: none;
@@ -89,14 +97,14 @@
     flex-direction: column;
   }
   .home-screen-input-controls{
+      display: flex;
       font-family: 'Lexend';
       background-color: white;
       border: 1px solid white; /* Global */
-      border-radius: 20px;
-      padding: 10px; /* Global */
-      margin-right: 5px;
+      border-radius: 25px;
       box-shadow: 0 0 10px 3px lightblue;
-      box-sizing: border-box;
+      padding: 2px 2px 2px 0px;
+      align-items: center;
   }
   .home-screen-input-controls:hover{
        border-color: gray;
@@ -109,7 +117,7 @@
   }
   .home-screen-input-warning{
     visibility: hidden;
-    padding: 5px;
+    padding: 5px 0px 0px 10px;
   }
   .home-screen-input-warning.invalid{
     text-align: left;
