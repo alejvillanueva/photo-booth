@@ -68,23 +68,6 @@
 </template>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap');
-  body {
-    font-family: 'Lexend', sans-serif;
-    color: white;
-    background: url('./assets/gramercy_background.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    margin: 0;
-  }
-  h2{
-    font-weight: 200;
-  }
-
-  p{
-    font-weight: 100;
-  }
 
   .home-enter-active,
   .home-leave-active
@@ -105,6 +88,3 @@
   }
 
 </style>
-
-
-<!-- ADD TRANSITION -->

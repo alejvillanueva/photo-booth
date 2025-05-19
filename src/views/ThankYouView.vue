@@ -3,7 +3,16 @@
 import ActionButton from '../components/ActionButton.vue';
 import AppHeader from '../components/AppHeader.vue';
   import HypeText from '../components/HypeText.vue';
-  const props = defineProps(['name', 'photo']);
+  const props = defineProps({
+    name: {
+      type: String,
+      default: "User",
+    },
+    photo: {
+      type: String,
+      default: "",
+    }
+  });
   const emit = defineEmits(['reset']);
 
   const startOver = () => {
@@ -46,7 +55,7 @@ import AppHeader from '../components/AppHeader.vue';
   
   .photo{
     width: 50vmin;
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     margin: 25px;
   }
 </style>

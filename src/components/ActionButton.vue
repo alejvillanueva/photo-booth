@@ -1,5 +1,10 @@
 <script setup>
-  const props = defineProps(['theme'])
+  const props = defineProps({
+    theme: {
+      type: String,
+      default: "primary"
+    }
+  })
 </script>
 <template>
   <button :class="theme">
@@ -8,38 +13,36 @@
 </template>
 <style scoped>
   button{
-    font-family: 'Lexend';
-    border-radius: 25px;
-    cursor: pointer;
+    font-family: var(--font-family-primary);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--border-radius);
     padding: 10px 25px;
-    font-weight: bolder;
   }
 
   .primary{
-    background-color: #0008db;
-    color: white;
-    border-color: white;
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);
+    border-color: var(--primary-border-color);
   }
 
   .primary:hover{
-    background-color: white;
-    color: #0008db;
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
+    border-color: var(--secondary-border-color);
+    box-shadow: 0 0 25px 1px var(--action-button-box-shadow-color); 
     transition: .3s;   
-    border-color: transparent;
-    box-shadow: 0 0 25px 1px white;
-
   }
 
   .secondary{
-    background-color: white;
-    color: #0008db;
-    border-color: #0008db;
+    background-color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
+    border-color: var(--secondary-border-color);
   }
   .secondary:hover{
-    background-color: #0008db;
-    color: white;  
+    background-color: var(--primary-bg-color);
+    color: var(--primary-text-color);  
     transition: .3s;
-    box-shadow: 0 0 25px 1px white;
+    box-shadow: 0 0 25px 1px var(--action-button-box-shadow-color);
   }
 
 </style>

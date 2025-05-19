@@ -1,7 +1,12 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
 import ActionButton from './ActionButton.vue';
-  const props = defineProps(['showExitButton']);
+  const props = defineProps({
+    showExitButton: {
+      type: Boolean,
+      default: false,
+    }
+  });
   const emit = defineEmits(['exit']);
 
   const goHome = () => {

@@ -1,0 +1,46 @@
+@import './_variables.css';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background: url('../assets/gramercy_background.png') center/cover no-repeat;
+ 
+  font-family: var(--font-family-primary);
+  color: var(--primary-text-color);
+  height: 100vh;
+}
+
+h1, h2 {
+  margin: 15px;
+  text-align: center;;
+}
+
+h2 {
+  font-weight: var(--font-weight-x-light)
+}
+
+p {
+  font-weight: var(--font-weight-thin);
+}
+
+
+button{
+  cursor: pointer;
+}
+
+input{
+    font-family: var(--font-family-primary);
+    text-align: center;
+
+    background-color: transparent;
+    border: none;
+    padding: 0 13px 0 15px;
+  }
+
+  input:focus{
+    outline: none;
+  }

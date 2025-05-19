@@ -10,9 +10,4 @@
     flex-direction: column;
     align-items: center;
   }
-
-  h1, h2 {
-    margin: 15px; /*SMALL MARGIN*/
-    text-align: center;
-  }
 </style>

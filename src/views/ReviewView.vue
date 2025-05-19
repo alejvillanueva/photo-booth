@@ -5,7 +5,12 @@ import AppHeader from '../components/AppHeader.vue';
   import HypeText from '../components/HypeText.vue';
 
   const emit = defineEmits(['retake', 'submit', 'exit'])
-  const props = defineProps(['photo']);
+  const props = defineProps({
+    photo: {
+      type: String,
+      default: "",
+    }
+  });
 
   const submitPhoto = () => {
     emit('submit');
@@ -67,7 +72,7 @@ import AppHeader from '../components/AppHeader.vue';
 
   .photo{
     width: 50vmin;
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     margin: 25px;  
   }
 
@@ -75,6 +80,5 @@ import AppHeader from '../components/AppHeader.vue';
     width: 100%;
     display: flex;  
     justify-content: space-around;
-
   }
 </style>

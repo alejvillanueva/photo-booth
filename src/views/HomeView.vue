@@ -67,26 +67,16 @@ import ActionButton from '../components/ActionButton.vue';
   </div>
 </template>
 <style scoped>
-  input{
-    font-family: 'Lexend';
-    background-color: transparent;
-    border: none;
-    padding: 0 13px 0 15px;
-    box-sizing: border-box;
-    text-align: center;
-  }
-  input:focus{
-    outline: none;
-  }
   .home-screen{
     position: absolute;
-    height: 100vh;
-    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    height: 100vh;
+    width: 100vw;
   }
   .home-screen-logo{
       max-width: 5vmax;
@@ -97,23 +87,22 @@ import ActionButton from '../components/ActionButton.vue';
     flex-direction: column;
   }
   .home-screen-input-controls{
-      display: flex;
-      font-family: 'Lexend';
-      background-color: white;
-      border: 1px solid white; /* Global */
-      border-radius: 25px;
-      box-shadow: 0 0 10px 3px lightblue;
-      padding: 2px 2px 2px 0px;
-      align-items: center;
+    display: flex;
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--secondary-bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 10px 3px lightblue;
+    padding: 2px 2px 2px 0px;
+    align-items: center;
   }
   .home-screen-input-controls:hover{
-       border-color: gray;
+    border-color: gray;
   }
   .home-screen-input-controls.invalid{
-    box-shadow: 0 0 20px 3px red;
+    box-shadow: 0 0 20px 3px var(--primary-warning-color);
   }
    .home-screen-input-controls.invalid:hover{
-       border-color: lightcoral;
+    border-color: var(--secondary-warning-color);
   }
   .home-screen-input-warning{
     visibility: hidden;
@@ -122,8 +111,8 @@ import ActionButton from '../components/ActionButton.vue';
   .home-screen-input-warning.invalid{
     text-align: left;
     visibility: visible;
-    color: lightcoral;
-    font-weight: 300;
+    color: var(--secondary-warning-color);
+    font-weight: var(--font-weight-light);
     font-size: small;
   }
   

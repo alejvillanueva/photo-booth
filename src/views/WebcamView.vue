@@ -91,7 +91,7 @@
   }
   video{
     width: 50vmin;
-    border-radius: 25px;
+    border-radius: var(--border-radius);
     margin: 25px;
   }
 </style>
