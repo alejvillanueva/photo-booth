@@ -24,7 +24,24 @@
   --secondary-warning-color: lightcoral;
 
   --action-button-box-shadow-color: white;
-  /*Sizing*/
+  --input-box-shadow-color: lightblue;
+  
+  /*Sizing & Spacing*/
+
+  --canvas-size: var(--sanvas-size);;
+
   --border-radius: 25px;
 
+  --box-shadow-spread-radius: 0.25rem;
+  --box-shadow-blur-radius: 1.25rem;
+
+  --space-xxs: 0.125rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.75rem;
+  --space-lg: 1rem;
+  --space-xl: 1.5rem;
+  --space-xxl: 2rem;
+  --space-xxl: 3rem;
+  --space-xxxl: 4rem;
 }

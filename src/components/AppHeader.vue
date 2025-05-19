@@ -1,12 +1,14 @@
 <script setup>
   import logo from '../assets/gramercy_logo.png';
-import ActionButton from './ActionButton.vue';
+  import ActionButton from './ActionButton.vue';
+  
   const props = defineProps({
     showExitButton: {
       type: Boolean,
       default: false,
     }
   });
+  
   const emit = defineEmits(['exit']);
 
   const goHome = () => {
@@ -37,10 +39,10 @@ import ActionButton from './ActionButton.vue';
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    padding: 50px;
+    padding: var(--space-xxl);
   }
   .header-logo{
-    max-width: 3vmax;
+    max-width: 4vmax;
     margin: auto;
   }
   .placeholder{

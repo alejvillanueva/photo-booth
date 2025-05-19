@@ -1,13 +1,15 @@
 <script setup>
-  import logo from '../assets/gramercy_logo.png';
-import ActionButton from '../components/ActionButton.vue';
-  import HypeText from '../components/HypeText.vue';
   import { ref, watch} from 'vue';
+
+  import logo from '../assets/gramercy_logo.png';
+  import ActionButton from '../components/ActionButton.vue';
+  import ContentText from '../components/ContentText.vue';
 
   const userName = ref('');
   const validInput = ref(true);
 
   const emit = defineEmits(['start']);
+  
   const submitName = () => {
     validInput.value = !!userName.value.trim();
     console.log("validInput", validInput.value)
@@ -31,14 +33,14 @@ import ActionButton from '../components/ActionButton.vue';
       :src="logo"
       alt="Gramercy Tech"
     >
-    <HypeText>
+    <ContentText>
       <template #main>
         Welcome to the Photo Experience!
       </template>
       <template #sub>
         Smile, snap, and share with our digital photo booth experience.
       </template>
-    </HypeText>
+    </ContentText>
     <p>Enter your name to begin.</p> 
     <div class="home-screen-input-container">
       <div 
@@ -91,22 +93,22 @@ import ActionButton from '../components/ActionButton.vue';
     background-color: var(--secondary-bg-color);
     border: 1px solid var(--secondary-bg-color);
     border-radius: var(--border-radius);
-    box-shadow: 0 0 10px 3px lightblue;
-    padding: 2px 2px 2px 0px;
+    box-shadow: 0 0 var(--box-shadow-blur-radius) var(--box-shadow-spread-radius) var(--input-box-shadow-color);
+    padding: var(--space-xxs) var(--space-xxs) var(--space-xxs) 0px;
     align-items: center;
   }
   .home-screen-input-controls:hover{
     border-color: gray;
   }
   .home-screen-input-controls.invalid{
-    box-shadow: 0 0 20px 3px var(--primary-warning-color);
+    box-shadow: 0 0 var(--box-shadow-blur-radius) var(--box-shadow-spread-radius) var(--primary-warning-color);
   }
    .home-screen-input-controls.invalid:hover{
     border-color: var(--secondary-warning-color);
   }
   .home-screen-input-warning{
     visibility: hidden;
-    padding: 5px 0px 0px 10px;
+    padding: var(--space-xs) 0px 0px var(--space-lg);
   }
   .home-screen-input-warning.invalid{
     text-align: left;

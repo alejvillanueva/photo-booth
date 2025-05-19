@@ -1,12 +1,16 @@
 <script setup>
-  import logo from '../assets/gramercy_logo.png';
-import ActionButton from '../components/ActionButton.vue';
-import AppHeader from '../components/AppHeader.vue';
-  import HypeText from '../components/HypeText.vue';
+  import ActionButton from '../components/ActionButton.vue';
+  import AppHeader from '../components/AppHeader.vue';
+  import ContentText from '../components/ContentText.vue';
 
-  const emit = defineEmits(['retake', 'submit', 'exit'])
+  const emit = defineEmits(['retake', 'submit', 'exit']);
+  
   const props = defineProps({
     photo: {
+      type: String,
+      default: "",
+    },
+    name: {
       type: String,
       default: "",
     }
@@ -27,14 +31,14 @@ import AppHeader from '../components/AppHeader.vue';
 <template>
   <div class="review-container">
     <AppHeader />
-    <HypeText>
+    <ContentText>
       <template #main>
-        You look fantastic!
+        You look fantastic, {{ name }}!
       </template>
       <template #sub> 
-        What do you think? 
+        Retake your photo if you're notcompletely satisfied with the shot.
       </template>
-    </HypeText>
+    </ContentText>
     <div class="review-photo">
       <img
         class="photo"
@@ -71,7 +75,7 @@ import AppHeader from '../components/AppHeader.vue';
   }
 
   .photo{
-    width: 50vmin;
+    width: var(--sanvas-size);;
     border-radius: var(--border-radius);
     margin: 25px;  
   }

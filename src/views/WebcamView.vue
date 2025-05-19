@@ -1,9 +1,10 @@
 <script setup>
   import { onMounted, ref } from 'vue';
 
-  import HypeText from '../components/HypeText.vue';
+  import ContentText from '../components/ContentText.vue';
   import AppHeader from '../components/AppHeader.vue';
   import ActionButton from '../components/ActionButton.vue';
+  
   const video = ref(null);
   const canvas = ref(null);
 
@@ -20,6 +21,14 @@
       console.error("Error access webcam: ", error);
     })
   }
+
+  const closeCamera = () => {
+    const { srcObject } = video.value;
+    srcObject.getTracks().forEach(track => {
+      track.stop();
+      video.value = null;
+    });
+  }
   
   onMounted(() => {
     startCamera();
@@ -34,10 +43,13 @@
     context.drawImage(video.value, 0, 0, videoWidth, videoHeight);
 
     const data = canvas.value.toDataURL("image/png");
+    
+    //closeCamera();
     emit('review', data)
   }
 
   const goHome = () => {
+    closeCamera();
     emit('exit');
   }
 
@@ -48,14 +60,14 @@
       :show-exit-button="true"
       @exit="goHome"
     />
-    <HypeText>
+    <ContentText>
       <template #main>
-        Position your face within the frame and take your photo whenever you're ready!
-      </template>
-      <template #sub>
         Say cheese!
       </template>
-    </HypeText>
+      <template #sub>
+        Position your face within the frame and take your photo whenever you're ready!
+      </template>
+    </ContentText>
     <div class="webcam">
       <video 
         ref="video" 
@@ -82,16 +94,10 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-
   }
   .webcam{
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  video{
-    width: 50vmin;
-    border-radius: var(--border-radius);
-    margin: 25px;
   }
 </style>

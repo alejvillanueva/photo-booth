@@ -54,6 +54,7 @@
   </Transition>
   <ReviewView 
     v-if="currentScreen === 'review'" 
+    :name="name"
     :photo="photo"
     @retake="retakePhoto"
     @submit="submitPhoto"

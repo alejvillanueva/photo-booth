@@ -1,8 +1,8 @@
 <script setup>
-  import logo from '../assets/gramercy_logo.png';
-import ActionButton from '../components/ActionButton.vue';
-import AppHeader from '../components/AppHeader.vue';
-  import HypeText from '../components/HypeText.vue';
+  import ActionButton from '../components/ActionButton.vue';
+  import AppHeader from '../components/AppHeader.vue';
+  import ContentText from '../components/ContentText.vue';
+  
   const props = defineProps({
     name: {
       type: String,
@@ -13,6 +13,7 @@ import AppHeader from '../components/AppHeader.vue';
       default: "",
     }
   });
+
   const emit = defineEmits(['reset']);
 
   const startOver = () => {
@@ -22,11 +23,14 @@ import AppHeader from '../components/AppHeader.vue';
 <template>
   <div class="thank-you-container">
     <AppHeader />
-    <HypeText>
+    <ContentText>
       <template #main> 
-        Thanks, {{ name }}
+        You are all set. Thanks, {{ name }}!
       </template>
-    </HypeText>
+      <template #sub> 
+        Hope you enjoyed our photo booth experience! Feel free to start over and submit a new photo. 
+      </template>
+    </ContentText>
     <div class="thank-you-photo-controls">
       <img
         class="photo"
@@ -42,6 +46,11 @@ import AppHeader from '../components/AppHeader.vue';
   </div>
 </template>
 <style scoped>
+  .photo{
+      width: var(--sanvas-size);;
+      border-radius: var(--border-radius);
+      margin: 25px;
+  }
   .thank-you-container{
     display: flex;
     flex-direction: column;
@@ -51,11 +60,5 @@ import AppHeader from '../components/AppHeader.vue';
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .photo{
-    width: 50vmin;
-    border-radius: var(--border-radius);
-    margin: 25px;
   }
 </style>
