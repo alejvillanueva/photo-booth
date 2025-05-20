@@ -12,7 +12,7 @@
   
   const submitName = () => {
     validInput.value = !!userName.value.trim();
-    console.log("validInput", validInput.value)
+
     if(validInput.value) {
       const name = userName.value;
       emit('start', name)
@@ -27,7 +27,7 @@
 
 </script>
 <template>
-  <div class="home-screen">
+  <div class="container">
     <img 
       class="home-screen-logo"
       :src="logo"
@@ -69,17 +69,6 @@
   </div>
 </template>
 <style scoped>
-  .home-screen{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
-    height: 100vh;
-    width: 100vw;
-  }
   .home-screen-logo{
       max-width: 5vmax;
       height: auto;
@@ -108,7 +97,7 @@
   }
   .home-screen-input-warning{
     visibility: hidden;
-    padding: var(--space-xs) 0px 0px var(--space-lg);
+    padding: var(--space-sm) 0px 0px var(--space-lg);
   }
   .home-screen-input-warning.invalid{
     text-align: left;

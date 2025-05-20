@@ -7,6 +7,8 @@
   
   const video = ref(null);
   const canvas = ref(null);
+  const countdown = ref(3);
+  const startCountdown = ref(false);
 
   const emit = defineEmits(['review', 'exit']);
 
@@ -34,6 +36,19 @@
     startCamera();
   })
 
+  const pressTake = () => {
+    startCountdown.value = true;
+    
+    const intervalID = setInterval(() => {
+      countdown.value--;
+
+      if(countdown.value === 0){
+        clearInterval(intervalID);
+        takePhoto();
+      }
+    }, 1000);
+  } 
+
   const takePhoto = () => {
     const context = canvas.value.getContext('2d');
     const {videoWidth, videoHeight } = video.value;
@@ -43,7 +58,7 @@
     context.drawImage(video.value, 0, 0, videoWidth, videoHeight);
 
     const data = canvas.value.toDataURL("image/png");
-    
+
     //closeCamera();
     emit('review', data)
   }
@@ -55,49 +70,76 @@
 
 </script>
 <template>
-  <div class="webcam-container">   
+  <div class="container">   
     <AppHeader
       :show-exit-button="true"
       @exit="goHome"
     />
-    <ContentText>
-      <template #main>
-        Say cheese!
-      </template>
-      <template #sub>
-        Position your face within the frame and take your photo whenever you're ready!
-      </template>
-    </ContentText>
-    <div class="webcam">
-      <video 
-        ref="video" 
-        autoplay 
-      />
-      <canvas 
-        ref="canvas" 
-        hidden 
-      />
-      <ActionButton
-        theme="secondary"
-        @click="takePhoto"
-      >
-        Take Photo
-      </ActionButton>
+    <div class="main">
+      <ContentText>
+        <template #main>
+          Say cheese!
+        </template>
+        <template #sub>
+          Position your face within the frame and take your photo whenever you're ready!
+        </template>
+      </ContentText>
+      <div class="webcam-container">
+        <div class="webcam-wrapper">
+          <video 
+            ref="video" 
+            autoplay 
+            class="media-canvas"
+          />
+          <div
+            v-if="startCountdown"
+            class="webcam-overlay"
+          >
+            {{ countdown }}
+          </div>
+          <canvas 
+            ref="canvas" 
+            hidden 
+          />
+        </div>
+        <ActionButton
+          theme="secondary"
+          @click="pressTake"
+        >
+          Take Photo
+        </ActionButton>
+      </div>
     </div>
   </div>
 </template>
 <style scoped>
-  .webcam-container{
+
+  video{
+    margin: 0;
+  }
+  .webcam-wrapper{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: var(--space-xl);
+  }
+
+  .webcam-overlay{
+    display: flex;
+    justify-content: center;
     align-items: center;
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: var(--canvas-size);
+    height: 100%;
+    border-radius: var(--border-radius);
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 6rem;
   }
-  .webcam{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  @media (max-width: 600px) {
+    .webcam-overlay {
+      width: var(--canvas-size-mb);
+    }
   }
 </style>

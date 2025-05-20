@@ -69,7 +69,6 @@
 </template>
 
 <style>
-
   .home-enter-active,
   .home-leave-active
    {

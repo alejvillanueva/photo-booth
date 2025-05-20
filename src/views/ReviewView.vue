@@ -29,60 +29,63 @@
   }
 </script>
 <template>
-  <div class="review-container">
+  <div class="container">
     <AppHeader />
-    <ContentText>
-      <template #main>
-        You look fantastic, {{ name }}!
-      </template>
-      <template #sub> 
-        Retake your photo if you're notcompletely satisfied with the shot.
-      </template>
-    </ContentText>
-    <div class="review-photo">
-      <img
-        class="photo"
-        :src="photo"
-      >
-      <div class="review-photo-controls">
-        <ActionButton
-          theme="primary"
-          @click="retakePhoto"
+    <div class="main">
+      <ContentText>
+        <template #main>
+          You look fantastic, {{ name }}!
+        </template>
+        <template #sub> 
+          Retake your photo if you're not completely satisfied with the shot.
+        </template>
+      </ContentText>
+      <div class="review-photo">
+        <img
+          class="media-canvas"
+          :src="photo"
         >
-          Retake
-        </ActionButton>
-        <ActionButton
-          theme="primary"
-          @click="submitPhoto"
-        >
-          Submit
-        </ActionButton>
-        <ActionButton
-          theme="primary"
-          @click="exit"
-        >
-          Exit
-        </ActionButton>
+        <div class="review-photo-controls">
+          <ActionButton
+            theme="primary"
+            @click="retakePhoto"
+          >
+            Retake
+          </ActionButton>
+          <ActionButton
+            theme="primary"
+            @click="submitPhoto"
+          >
+            Submit
+          </ActionButton>
+          <ActionButton
+            theme="primary"
+            @click="exit"
+          >
+            Exit
+          </ActionButton>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <style scoped>
-  .review-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .photo{
-    width: var(--sanvas-size);;
-    border-radius: var(--border-radius);
-    margin: 25px;  
-  }
-
   .review-photo-controls{
     width: 100%;
     display: flex;  
     justify-content: space-around;
   }
+  @media (max-width: 600px) {
+  .review-photo-controls {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: var(--space-lg);
+    padding: 0 var(--space-xxxl);
+  }
+
+  .mobile-actions{
+    display: inline;
+  }
+}
 </style>

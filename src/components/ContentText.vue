@@ -1,7 +1,7 @@
 <template>
   <div class="content-text-container">
     <h1><slot name="main" /></h1>
-    <h2><slot name="sub" /></h2>
+    <h3><slot name="sub" /></h3>
   </div>
 </template>
 <style scoped>

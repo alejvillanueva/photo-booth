@@ -7,20 +7,28 @@
 }
 
 body{
-  background: url('../assets/gramercy_background.png') center/cover no-repeat;
- 
+  background: url('../assets/gramercy_background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  overscroll-behavior: none;
   font-family: var(--font-family-primary);
   color: var(--primary-text-color);
   height: 100vh;
+  min-width: 100%;
+
+  text-align: center;
 }
 
-h1, h2 {
+h1 {
   margin: var(--space-lg);
-  text-align: center;;
 }
 
-h2 {
-  font-weight: var(--font-weight-x-light)
+h3 {
+  font-weight: var(--font-weight-x-light);
+  margin: var(--space-md);
+  line-height: 1.75rem;
 }
 
 p {
@@ -30,6 +38,7 @@ p {
 
 button{
   cursor: pointer;
+  border-style: solid;
 }
 
 input{
@@ -45,8 +54,34 @@ input:focus{
   outline: none;
 }
 
-video{
-  width: 60vmin;
+.media-canvas{
+  max-width: var(--canvas-size);
   border-radius: var(--border-radius);
-  margin: var(--space-xl);
+  margin: var(--space-md)  
+}
+
+.container{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+.main{
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  flex: 3;
+}
+
+
+@media (max-width: 600px){
+  .media-canvas{
+     max-width: var(--canvas-size-mb);
+  }
 }

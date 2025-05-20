@@ -39,7 +39,8 @@
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    padding: var(--space-xxl);
+    padding: var(--space-xl);
+    align-items: center;
   }
   .header-logo{
     max-width: 4vmax;
@@ -47,5 +48,11 @@
   }
   .placeholder{
     visibility: hidden;
+  }
+
+  @media (max-height: 750px) {
+    .header {
+      padding: var(--space-md);
+    }
   }
 </style>
