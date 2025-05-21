@@ -4,14 +4,21 @@
   import ContentText from '../components/ContentText.vue';
   import AppHeader from '../components/AppHeader.vue';
   import ActionButton from '../components/ActionButton.vue';
-  
+  import IconButton from '../components/IconButton.vue';
+
+  import flipIcon from '../assets/flip-icon.svg';
+
   const video = ref(null);
   const canvas = ref(null);
   const countdown = ref(3);
   const startCountdown = ref(false);
+  const reverse = ref(false);
 
   const emit = defineEmits(['review', 'exit']);
 
+  const flipCamera = () => {
+    reverse.value = !reverse.value;
+  }
   const startCamera = () => {
     const mediaProps = {
       video: true
@@ -55,7 +62,8 @@
 
     canvas.value.width = videoWidth;
     canvas.value.height = videoHeight;
-    context.drawImage(video.value, 0, 0, videoWidth, videoHeight);
+    if(reverse.value) context.scale(-1, 1);
+    context.drawImage(video.value, reverse.value ? videoWidth * -1 : 0, 0, videoWidth, videoHeight);
 
     const data = canvas.value.toDataURL("image/png");
 
@@ -90,12 +98,25 @@
             ref="video" 
             autoplay 
             class="media-canvas"
+            :class="{reverse}"
           />
           <div
             v-if="startCountdown"
             class="webcam-overlay"
           >
             {{ countdown }}
+          </div>
+          <div
+            v-if="!startCountdown"
+            class="action-overlay"
+          >
+            <IconButton @click="flipCamera">
+              <img
+                class="icon-button-image"
+                :src="flipIcon"
+                alt="Flip video image"
+              >
+            </IconButton>
           </div>
           <canvas 
             ref="canvas" 
@@ -113,10 +134,14 @@
   </div>
 </template>
 <style scoped>
-
   video{
     margin: 0;
   }
+  
+  .reverse{
+    transform: scaleX(-1);
+  }
+
   .webcam-wrapper{
     display: flex;
     flex-direction: column;
@@ -133,12 +158,31 @@
     width: var(--canvas-size);
     height: 100%;
     border-radius: var(--border-radius);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: var(--overlay-color);
     font-size: 6rem;
+  }
+
+  .icon-button-image{
+    max-width: 3vmax;
+  }
+
+  .action-overlay{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    width: var(--canvas-size);
+    height: 100%;
+    padding: var(--space-xs);
+    margin: var(--space-xs);
   }
 
   @media (max-width: 600px) {
     .webcam-overlay {
+      width: var(--canvas-size-mb);
+    }
+
+    .action-overlay{
       width: var(--canvas-size-mb);
     }
   }

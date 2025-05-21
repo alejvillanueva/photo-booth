@@ -22,22 +22,22 @@
 
   .primary{
     background-color: var(--primary-bg-color);
-    color: var(--primary-text-color);
     border-color: var(--primary-border-color);
+    color: var(--primary-text-color);
   }
 
   .primary:hover{
     background-color: var(--secondary-bg-color);
-    color: var(--secondary-text-color);
     border-color: var(--secondary-border-color);
+    color: var(--secondary-text-color);
     box-shadow: 0 0 var(--box-shadow-blur-radius) var(--box-shadow-spread-radius) var(--action-button-box-shadow-color); 
     transition: .3s;   
   }
 
   .secondary{
     background-color: var(--secondary-bg-color);
-    color: var(--secondary-text-color);
     border-color: var(--secondary-border-color);
+    color: var(--secondary-text-color);
   }
   .secondary:hover{
     background-color: var(--primary-bg-color);

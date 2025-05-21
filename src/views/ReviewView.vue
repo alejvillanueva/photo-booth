@@ -71,21 +71,18 @@
 </template>
 <style scoped>
   .review-photo-controls{
-    width: 100%;
     display: flex;  
     justify-content: space-around;
-  }
-  @media (max-width: 600px) {
-  .review-photo-controls {
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    gap: var(--space-lg);
-    padding: 0 var(--space-xxxl);
+    width: 100%;
   }
 
-  .mobile-actions{
-    display: inline;
-  }
+  @media (max-width: 600px) {
+    .review-photo-controls {
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      gap: var(--space-lg);
+      padding: 0 var(--space-xxxl);
+    }
 }
 </style>

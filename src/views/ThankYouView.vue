@@ -2,10 +2,9 @@
   import ActionButton from '../components/ActionButton.vue';
   import AppHeader from '../components/AppHeader.vue';
   import ContentText from '../components/ContentText.vue';
-  import MobileButton from '../components/MobileButton.vue';
+  import IconButton from '../components/IconButton.vue';
 
   import downloadIcon from '../assets/download-icon.svg';
-  import sendIcon from '../assets/send-icon.svg';
 
   const props = defineProps({
     name: {
@@ -56,32 +55,27 @@
         </template>
       </ContentText>
       <div class="thank-you-photo-controls">
-        <img
-          class="media-canvas"
-          :src="photo"
-        >
+        <div class="image-wrapper">
+          <img
+            class="media-canvas"
+            :src="photo"
+          >
+          <div class="action-overlay">
+            <IconButton @click="downloadImage">
+              <img
+                class="icon-button-image"
+                :src="downloadIcon"
+                alt="Download Image"
+              >
+            </IconButton>
+          </div>
+        </div>
         <ActionButton
           theme="secondary"
           @click="startOver"
         >
           Start Over
         </ActionButton>
-        <div class="mobile-actions">
-          <MobileButton @click="downloadImage">
-            <img
-              class="mobile-button-image"
-              :src="downloadIcon"
-              alt="Download Image"
-            >
-          </MobileButton>
-          <MobileButton>
-            <img
-              class="mobile-button-image"
-              :src="sendIcon"
-              alt="Share Image"
-            >
-          </MobileButton>
-        </div>
       </div>
     </div>
   </div>
@@ -92,16 +86,32 @@
     flex-direction: column;
     align-items: center;
   }
-  .mobile-actions{
-    display: none;
+
+  .image-wrapper{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;      
   }
 
-  .mobile-button-image{
+  .action-overlay{
+    display: none;
+
+  }
+
+  .icon-button-image{
     max-width: 3vmax;
   }
+  
   @media (max-width: 600px) {
-    .mobile-actions{
+    .action-overlay{
       display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      position: absolute;
+      width: var(--canvas-size-mb);
+      height: 100%;
+      padding: var(--space-md);
     }
   }
 </style>

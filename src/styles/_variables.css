@@ -26,8 +26,10 @@
   --action-button-box-shadow-color: white;
   --input-box-shadow-color: lightblue;
   
-  --mobile-button-bg-color: #0092DB;
-  --mobile-button-hover-color: darkgrey;
+  --icon-button-bg-color: #0092DB;
+  --icon-button-hover-color: darkgrey;
+  
+  --overlay-color: rgba(0,0,0,.3);
   
   /*Sizing & Spacing*/
 
